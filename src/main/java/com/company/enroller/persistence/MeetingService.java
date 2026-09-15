@@ -23,4 +23,14 @@ public class MeetingService {
 		return query.list();
 	}
 
+	public Meeting findById(long id) {
+		return connector.getSession().get(Meeting.class, id);
+	}
+
+	public void registerMeeting(Meeting meeting) {
+		Transaction transaction = connector.getSession().beginTransaction();
+		connector.getSession().save(meeting);
+		transaction.commit();
+	}
+
 }
